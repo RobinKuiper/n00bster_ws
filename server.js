@@ -86,6 +86,18 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('necessity_picked', message => {
+        if (message.room) {
+            socket.broadcast.to(message.room).emit('necessity_picked', message.necessity)
+        }
+    });
+
+    socket.on('necessity_unpicked', message => {
+        if (message.room) {
+            socket.broadcast.to(message.room).emit('necessity_unpicked', message.necessity)
+        }
+    });
+
     socket.on('disconnect', () => {
         console.log('SocketIO > Disconnected socket ' + socket.id);
     });
