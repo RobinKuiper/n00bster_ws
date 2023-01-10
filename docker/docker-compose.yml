@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+
+  websocket:
+    container_name: noobster_websocket
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DOCKER=1
+    env_file:
+      - .env
+    ports:
+      - "8081:80"

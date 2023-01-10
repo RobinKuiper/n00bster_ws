@@ -2,7 +2,7 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: process.env.CORS || "http://localhost:3000",
         methods: ["GET", "POST"]
     }
 });
@@ -20,7 +20,6 @@ io.use((socket, next) => {
     const user = socket.request.headers.user;
     if (auth && user) {
         const token = auth.replace('Bearer ', '');
-        console.log('auth token', token);
         // do some security check with token TODO: validate jwt? if from react. validate server token if from server
         // ...
         // store token and bind with specific socket id
