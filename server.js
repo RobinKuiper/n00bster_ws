@@ -1,5 +1,6 @@
 const app = require('express')();
 const http = require('http').Server(app);
+require('dotenv').config()
 const io = require('socket.io')(http, {
     cors: {
         origin: process.env.CORS || "http://localhost:3000",
